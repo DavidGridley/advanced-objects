@@ -236,7 +236,7 @@ test('fruit market', () => {
   });
 });
 
-test('averageFruitPerBox', () => {
+test.only('averageFruitPerBox', () => {
   const boxes = [
     {
         contents: 'apples',

@@ -3,6 +3,12 @@ const teaBagsLeft = teaBags => {
   // and values are the number of teaBags we have of that type.
 
   // return the total number teabags we have left
+
+  const arr = Object.values(teaBags);
+  const teaBagsTotal = arr.reduce((acc, item) => {
+    return acc + item;
+  }, 0);
+  return teaBagsTotal;
 }
 
 const shoppingList = (previousShoppingList, newShoppingList) => {
@@ -12,6 +18,10 @@ const shoppingList = (previousShoppingList, newShoppingList) => {
   // return a new shopping list which has properties from both shopping lists
   // properties from newShoppingList should overwrite properties from previousShoppingList
   // previousShoppingList and newShoppingList should not be mutated
+
+  const mergeShoppingList = Object.assign({}, previousShoppingList, newShoppingList);
+  return mergeShoppingList;
+
 }
 
 const footballResults = (results) => {
@@ -32,6 +42,12 @@ const footballResults = (results) => {
   //   'tottenham has 3 points',
   //   'chelsea has 2 points'
   // ]
+   const teamname = Object.keys(results);
+   const scoreString = teamname.map(team => {
+     return `${team} has ${results[team]} points`;
+   });
+   return scoreString;
+
 }
 
 const convertBookArrayToMap = books => {
@@ -59,6 +75,17 @@ const convertBookArrayToMap = books => {
   // }
 
   // hint: create a new output object and assign new properties with id as key and the book as value
+  
+  const newBookMap = {};
+  books.map(book => {
+    return Object.assign(newBookMap, {[book.id]:book})
+  });
+  return newBookMap;
+      
+  
+
+
+
 }
 
 const dogCount = dogs => {
@@ -74,6 +101,13 @@ const dogCount = dogs => {
 
   // hint: create a new output object and loop over dogs array.
   // For each dog increment the value corresponding to the location key.
+
+  const objDogCount = {};
+  dogs.map(dog => {
+     (!objDogCount[dog.location]) ? objDogCount[dog.location] = 1 : objDogCount[dog.location]++;
+  })
+  return objDogCount;
+
 }
 
 const dogNames = dogs => {
@@ -87,6 +121,13 @@ const dogNames = dogs => {
   // return an object which has locations as keys and
   // as values an array which contains the names of the dogs
   // at that location
+
+  const locationDogs = {}
+
+  dogs.map(dog => {
+    (!locationDogs[dog.location]) ? locationDogs[dog.location] = [dog.name] : locationDogs[dog.location].push(dog.name);
+  })
+  return locationDogs;
 }
 
 const fruitMarket = boxes => {
@@ -100,6 +141,14 @@ const fruitMarket = boxes => {
 
   // return an object that has contents as keys and the total for that
   // fruit in all boxes as values.
+  const fruitTotal = {}
+
+  boxes.map(box => {
+    console.log(fruitTotal[box.contents]);
+    (!fruitTotal[box.contents]) ? fruitTotal[box.contents] = box.number : fruitTotal[box.contents] += box.number;
+  })
+  return fruitTotal;
+
 }
 
 const averageFruitPerBox = boxes => {
@@ -113,6 +162,26 @@ const averageFruitPerBox = boxes => {
 
   // return an object that has contents as keys and the average number of
   // fruit per box for that fruit type as value
+
+  const fruitAverage = {};
+
+  // Create object with key fruit and value array of numbers of fruit
+  boxes.map(box => {
+    (!fruitAverage[box.contents]) ? fruitAverage[box.contents] = [box.number] : fruitAverage[box.contents].push(box.number);
+  });
+  const fruitNames = Object.keys(fruitAverage);
+
+  const fruitResult = {};
+
+  fruitNames.forEach(fruit => {
+    let fruitTotal = fruitAverage[fruit].reduce((acc, item) => {
+      acc += item;
+      return acc
+    }, 0);
+    let resultAvg = fruitTotal / fruitAverage[fruit].length
+    fruitResult[fruit] = resultAvg;
+  })
+  return fruitResult;
 }
 
 /* STRETCH GOALS */
