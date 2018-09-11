@@ -236,7 +236,7 @@ test('fruit market', () => {
   });
 });
 
-test.only('averageFruitPerBox', () => {
+test('averageFruitPerBox', () => {
   const boxes = [
     {
         contents: 'apples',
@@ -333,7 +333,7 @@ test('Football results with array', () => {
   })
 });
 
-test('Stock market', () => {
+test.only('Stock market', () => {
   const prices = [
     {
       ticker: 'GOOG',

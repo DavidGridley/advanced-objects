@@ -186,7 +186,7 @@ const averageFruitPerBox = boxes => {
 
 /* STRETCH GOALS */
 
-const footballResultsWithObject = (teams, results) => {
+const footballResultsWithObject = (teams, results) => { 
   // function receives two parameters:
   // 1. an object where which contains football team ids as keys and team names as values
   // 2. object which contains football team ids as keys and how many points the team has as values
@@ -194,6 +194,15 @@ const footballResultsWithObject = (teams, results) => {
   // take a look at the test for sample data
 
   // return an object has team names as keys and their number of points as values
+ const resultObj = {};
+ const teamIDS = Object.keys(teams);
+
+ teamIDS.forEach(id => {
+   resultObj[teams[id]] = results[id];
+ })
+ return resultObj;
+ 
+
 }
 
 const footballResultsWithArray = (teams, results) => {
@@ -204,6 +213,21 @@ const footballResultsWithArray = (teams, results) => {
   // take a look at the test for sample data
 
   // return an object has team names as keys and their number of points as values
+ const teamObj = {};
+ const resultObj = {};
+ const resultsIDS = Object.keys(results);
+ teams.forEach(team => {
+  teamObj[team.id] = team.name;
+ });
+ 
+ resultsIDS.forEach(id => {
+   resultObj[teamObj[id]] = results[id];
+ })
+
+ return resultObj;
+ 
+
+
 }
 
 const stockMarket = prices => {
@@ -215,6 +239,23 @@ const stockMarket = prices => {
   // return an object which has ticker as key another object as value,
   // the value object should have two properties: min and max which each contain
   // the min and max price achieved during the day
+
+  // boxes.map(box => {
+  //   (!fruitAverage[box.contents]) ? fruitAverage[box.contents] = [box.number] : fruitAverage[box.contents].push(box.number);
+  // });
+
+  const priceTicker = {};
+
+  prices.map(index => {
+    (!priceTicker[index.ticker]) ? priceTicker[index.ticker] = [index.price] : priceTicker[index.ticker].push(index.price);
+
+  })
+  console.log(priceTicker);
+
+  const tickerKeys = Object.keys(priceTicker);
+
+  tickerKeys.forEach
+
 }
 
 const calculateOrderPrice = (menu, order) => {
